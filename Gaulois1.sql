@@ -2,6 +2,12 @@
 SELECT * FROM lieu WHERE nom_lieu LIKE '%um';
 
 /*Nombre de personnages par lieu (trié par nombre de personnages décroissant)*/
-SELECT COUNT(id_personnage), id_lieu  FROM personnage
-GROUP BY id_lieu
-ORDER BY  COUNT(id_personnage) DESC
+SELECT COUNT(nom_personnage) AS nbPersonnages, nom_lieu  
+FROM personnage p
+INNER JOIN lieu l ON p.id_lieu = l.id_lieu
+
+GROUP BY  l.id_lieu
+
+ORDER BY  nbPersonnages DESC
+
+/*Nom des personnages + spécialité + adresse et lieu d'habitation, triés par lieu puis par nom de personnage*/
