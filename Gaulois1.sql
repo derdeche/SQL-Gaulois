@@ -37,3 +37,10 @@ ORDER BY  date_bataille DESC
  INNER JOIN ingredient i ON c.id_ingredient = i.id_ingredient
  GROUP BY p.id_potion 
  ORDER BY cout DESC
+
+ /*Nom des ingrédients + coût + quantité de chaque ingrédient qui composent la potion 'Santé'*/
+SELECT nom_ingredient, cout_ingredient, qte
+FROM ingredient i
+INNER JOIN composer c ON i.id_ingredient = c.id_ingredient 
+INNER JOIN potion p ON c.id_potion= p.id_potion
+WHERE nom_potion = 'Santé'
