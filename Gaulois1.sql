@@ -24,9 +24,16 @@ INNER JOIN specialite s on p.id_specialite = s.id_specialite
 GROUP BY s.id_specialite
 ORDER BY nbPersonnages DESC
 
-/*Nom, date et lieu des batailles, classées de la plus récente à la plus ancienne (dates affichées au format jj/mm/aaaa).*/
 /*Nom, date et lieu des batailles, classées de la plus récente à la plus ancienne (dates affichées au format jj/mm/aaaa)*/
 SELECT nom_bataille, DATE_FORMAT(date_bataille,"%d %m %Y")AS dateB, nom_lieu
 FROM bataille b 
 INNER JOIN lieu l ON b.id_lieu = l.id_lieu
 ORDER BY  date_bataille DESC  
+
+/*Nom des potions + coût de réalisation de la potion (trié par coût décroissant)*/
+ SELECT nom_potion, SUM(cout_ingredient * qte) AS cout 
+ FROM potion p
+ INNER JOIN composer c ON p.id_potion = c.id_potion
+ INNER JOIN ingredient i ON c.id_ingredient = i.id_ingredient
+ GROUP BY p.id_potion 
+ ORDER BY cout DESC
