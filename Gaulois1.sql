@@ -44,3 +44,11 @@ FROM ingredient i
 INNER JOIN composer c ON i.id_ingredient = c.id_ingredient 
 INNER JOIN potion p ON c.id_potion= p.id_potion
 WHERE nom_potion = 'Santé'
+
+/*Combien existe-t-il de casques de chaque type et quel est leur coût total ? (classés par nombre décroissant)*/
+
+SELECT nom_type_casque, SUM(t.id_type_casque) AS total, SUM(c.cout_casque) AS cout
+FROM casque c 
+INNER JOIN type_casque t ON c.id_type_casque= t.id_type_casque
+GROUP BY t.id_type_casque
+ORDER BY cout DESC
