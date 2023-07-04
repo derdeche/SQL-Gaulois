@@ -23,3 +23,10 @@ FROM personnage p
 INNER JOIN specialite s on p.id_specialite = s.id_specialite
 GROUP BY s.id_specialite
 ORDER BY nbPersonnages DESC
+
+/*Nom, date et lieu des batailles, classées de la plus récente à la plus ancienne (dates affichées au format jj/mm/aaaa).*/
+/*Nom, date et lieu des batailles, classées de la plus récente à la plus ancienne (dates affichées au format jj/mm/aaaa)*/
+SELECT nom_bataille, DATE_FORMAT(date_bataille,"%d %m %Y")AS dateB, nom_lieu
+FROM bataille b 
+INNER JOIN lieu l ON b.id_lieu = l.id_lieu
+ORDER BY  date_bataille DESC  
