@@ -105,3 +105,8 @@ WHERE p.nom_personnage = 'Zérozérosix'
 DELETE FROM composer c
 WHERE c.id_potion = 9
 AND c.id_ingredient = 19
+
+/*F.Obélix s'est trompé : ce sont 42 casques Weisenau, et non Ostrogoths, qu'il a pris lors de la bataille 'Attaque de la banque postale'. Corrigez son erreur !*/
+UPDATE prendre_casque pR
+SET pR.id_casque='10'
+WHERE pR.id_bataille='9'
