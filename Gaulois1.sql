@@ -73,3 +73,9 @@ SELECT nom_personnage
 FROM personnage p
 INNER JOIN boire b ON p.id_personnage = b.id_personnage
 WHERE b.dose_boire = 0
+
+/*15-Nom du / des personnages qui n'ont pas le droit de boire de la potion 'Magique'*/
+SELECT nom_personnage
+FROM personnage p
+INNER JOIN autoriser_boire aT ON  p.id_personnage = aT.id_personnage
+WHERE aT.id_potion != 1
