@@ -100,3 +100,8 @@ AND c.id_casque NOT IN (SELECT c.id_casque FROM prendre_casque)
 UPDATE personnage p
 SET id_lieu = '9', p.adresse_personnage = 'Prison'
 WHERE p.nom_personnage = 'Zérozérosix'
+
+/*E.La potion 'Soupe' ne doit plus contenir de persil*/
+DELETE FROM composer c
+WHERE c.id_potion = 9
+AND c.id_ingredient = 19
