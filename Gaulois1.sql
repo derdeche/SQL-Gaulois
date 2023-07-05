@@ -95,3 +95,8 @@ VALUES (12,1)
 DELETE FROM casque c
 WHERE c.id_type_casque = 2 
 AND c.id_casque NOT IN (SELECT c.id_casque FROM prendre_casque)
+
+/*D.Modifiez l'adresse de Zérozérosix : il a été mis en prison à Condate*/
+UPDATE personnage p
+SET id_lieu = '9', p.adresse_personnage = 'Prison'
+WHERE p.nom_personnage = 'Zérozérosix'
