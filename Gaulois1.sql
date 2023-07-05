@@ -66,3 +66,10 @@ INNER JOIN composer c ON p.id_potion= c.id_potion
 INNER JOIN ingredient i ON c.id_ingredient= i.id_ingredient
 WHERE nom_ingredient = 'Poisson frais'
 GROUP BY p.nom_potion 
+
+/*14-Nom des personnages qui n'ont jamais bu aucune potion*/
+
+SELECT nom_personnage
+FROM personnage p
+INNER JOIN boire b ON p.id_personnage = b.id_personnage
+WHERE b.dose_boire = 0
