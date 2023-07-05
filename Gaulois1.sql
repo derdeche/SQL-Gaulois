@@ -87,6 +87,11 @@ WHERE aT.id_potion != 1
 INSERT INTO personnage (nom_personnage, id_specialite, id_lieu, adresse_personnage)
 VALUES ('Champdeblix',12,6,'Hantassion')
 
-/*B.B. Autorisez Bonemine à boire de la potion magique, elle est jalouse d'Iélosubmarine...*/
+/*B.Autorisez Bonemine à boire de la potion magique, elle est jalouse d'Iélosubmarine...*/
 INSERT INTO autoriser_boire (id_personnage, id_potion)
 VALUES (12,1)
+
+/*C.Supprimez les casques grecs qui n'ont jamais été pris lors d'une bataille */
+DELETE FROM casque c
+WHERE c.id_type_casque = 2 
+AND c.id_casque NOT IN (SELECT c.id_casque FROM prendre_casque)
