@@ -79,3 +79,10 @@ SELECT nom_personnage
 FROM personnage p
 INNER JOIN autoriser_boire aT ON  p.id_personnage = aT.id_personnage
 WHERE aT.id_potion != 1
+
+/*-------------En écrivant toujours des requêtes SQL, modifiez la base de données comme suit :----------------*/
+
+/*A. Ajoutez le personnage suivant : Champdeblix, agriculteur résidant à la ferme Hantassion de Rotomagus*/
+
+INSERT INTO personnage (nom_personnage, id_specialite, id_lieu, adresse_personnage)
+VALUES ('Champdeblix',12,6,'Hantassion')
