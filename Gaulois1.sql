@@ -97,6 +97,19 @@ INNER JOIN ingredient i ON c.id_ingredient= i.id_ingredient
 WHERE nom_ingredient = 'Poisson frais'
 GROUP BY p.nom_potion 
 
+/*13-Nom du / des lieu(x) possédant le plus d'habitants, en dehors du village gaulois*/
+SELECT nom_lieu, COUNT(id_personnage) AS nBpersonne
+FROM personnage p, lieu l
+WHERE p.id_lieu = l.id_lieu
+GROUP BY l.id_lieu
+HAVING nBpersonne >= ALL(
+SELECT COUNT(id_personnage)
+FROM personnage p, lieu l
+WHERE p.id_lieu = l.id_lieu
+AND l.id_lieu != 1
+GROUP BY l.id_lieu
+)
+
 /*14-Nom des personnages qui n'ont jamais bu aucune potion*/
 
 SELECT nom_personnage
