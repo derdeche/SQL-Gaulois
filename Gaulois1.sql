@@ -45,6 +45,22 @@ INNER JOIN composer c ON i.id_ingredient = c.id_ingredient
 INNER JOIN potion p ON c.id_potion= p.id_potion
 WHERE nom_potion = 'Santé'
 
+
+/*8-Nom du ou des personnages qui ont pris le plus de casques dans la bataille 'Bataille du village gaulois'*/
+SELECT nom_personnage, SUM(qte) AS nbCasque
+FROM personnage p
+INNER JOIN prendre_casque  pR ON p.id_personnage = pR.id_personnage
+WHERE pR.id_bataille = 1
+GROUP BY p.id_personnage
+
+HAVING nbCasque >= ALL (
+SELECT SUM(pR.qte)
+FROM personnage,prendre_casque pR
+WHERE personnage.id_personnage= pR.id_personnage
+AND pR.id_bataille = 1
+GROUP BY personnage.id_personnage
+)
+
 /*9-Nom des personnages et leur quantité de potion bue (en les classant du plus grand buveur au plus petit)*/
 SELECT nom_personnage, SUM(dose_boire) AS quantitéConsom
 FROM personnage p
@@ -110,3 +126,4 @@ AND c.id_ingredient = 19
 UPDATE prendre_casque pR
 SET pR.id_casque='10'
 WHERE pR.id_bataille='9'
+
