@@ -68,6 +68,20 @@ INNER JOIN boire b ON p.id_personnage = b.id_personnage
 GROUP BY p.id_personnage
 ORDER BY quantitéConsom DESC
 
+/*10-Nom de la bataille où le nombre de casques pris a été le plus important*/
+SELECT nom_bataille, SUM(qte) AS nCasque
+FROM bataille b
+INNER JOIN prendre_casque pR ON b.id_bataille= pR.id_bataille
+GROUP BY b.id_bataille
+
+HAVING nCasque >= ALL 
+(
+SELECT SUM(prendre_casque.qte)
+FROM bataille,prendre_casque
+WHERE bataille.id_bataille = prendre_casque.id_bataille
+GROUP BY bataille.id_bataille
+)
+
 /*11-Combien existe-t-il de casques de chaque type et quel est leur coût total ? (classés par nombre décroissant)*/
 SELECT nom_type_casque, COUNT(c.nom_casque) AS nb_casques, SUM(c.cout_casque) AS cout
 FROM casque c 
